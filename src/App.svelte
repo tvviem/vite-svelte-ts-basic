@@ -1,22 +1,21 @@
 <script lang="ts">
-  // Array
-  const names = ['Bruce', 'Clark', 'Diana'];
-  // List objects
-  const fullNames = [
-    { first: 'Bruce', last: 'Wayne' },
-    { first: 'Clark', last: 'Kent' },
-    { first: 'Princess', last: 'Diana' }
-  ];
+  let names = ['Bruce', 'Clark', 'Diana', 'Barry'];
+  const shuffleNames = (
+    event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }
+  ) => {
+    names = names.sort(() => Math.random() - 0.5); // Random array
+  };
 </script>
 
 <main>
-  {#each fullNames as name, index}
-    <h2>{index + 1} {name.first} {name.last}</h2>
+  <!-- Using key expression (name) for adding and removing exactly -->
+  {#each names as name (name)}
+    <h2>{name}</h2>
+    <input placeholder="Last name" />
   {/each}
-
-  {#each names as name, index}
-    <h2>{index + 1} {name}</h2>
-  {/each}
+  <div>
+    <button on:click={shuffleNames}>Shuffle!</button>
+  </div>
 </main>
 
 <style>
