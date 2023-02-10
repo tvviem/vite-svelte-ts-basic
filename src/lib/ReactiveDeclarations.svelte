@@ -3,6 +3,11 @@
   let lastName = 'Trieu';
   // Reactive Declaration
   $: fullName = `${firstName} ${lastName}`;
+  // Reactive Statements (1)
+  $: {
+    const greatReactiveBlock = `Fullname is ${firstName} ${lastName}`;
+    console.log(greatReactiveBlock);
+  }
 
   // cart items
   let items = [
@@ -11,9 +16,24 @@
     { id: 3, title: 'Laptop', price: 300 }
   ];
   $: total = items.reduce((total, curr) => (total = total + curr.price), 0);
+
+  let volume = 0;
+  // if condition in Reactive Statements
+  $: if (volume < 0) {
+    alert('Cannot go lower 0');
+    volume = 0;
+  } else if (volume > 20) {
+    alert('Cannot go higher 20');
+    volume = 20;
+  }
 </script>
 
 <section>
+  <h2>Current Volume {volume}</h2>
+  <div>
+    <button on:click={() => (volume += 2)}>Increase Vol</button>
+    <button on:click={() => (volume -= 2)}>Decrease Vol</button>
+  </div>
   <input type="text" placeholder="firstname" bind:value={firstName} />
   <input type="text" placeholder="lastname" bind:value={lastName} />
   <h2>{firstName} {lastName}</h2>
