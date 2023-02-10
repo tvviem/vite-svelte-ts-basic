@@ -1,9 +1,11 @@
 <script lang="ts">
-  import FormHandling from './lib/FormHandling.svelte';
+  // import FormHandling from './lib/FormHandling.svelte';
+
+  import ReactiveDeclarations from './lib/ReactiveDeclarations.svelte';
 </script>
 
 <main>
-  <FormHandling />
+  <ReactiveDeclarations />
 </main>
 
 <style>
