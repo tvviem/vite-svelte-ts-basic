@@ -1,19 +1,14 @@
 <script lang="ts">
-  import Greet from './components/Greet.svelte';
-  const name = 'ViemTrieu';
-  const obj = {
-    name: 'viem',
-    heroName: 'Flash'
-  };
+  import { setContext } from 'svelte';
+  import CompB from './components/CompB.svelte';
+
+  const userName = 'tvviem87';
+  setContext('uname-context', userName);
 </script>
 
 <main>
-  <Greet name="Bruce" heroName="Batman" />
-  <Greet name="Clark" heroName="Superman" />
-  <Greet name="Diana" heroName="Wonder Woman" />
-  <Greet {name} />
-  <!-- Spread obj to pass props for childcomponent -->
-  <Greet {...obj} />
+  <h2>userName in rootComponent {userName}</h2>
+  <CompB />
 </main>
 
 <style>
