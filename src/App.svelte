@@ -1,14 +1,25 @@
 <script lang="ts">
-  import { setContext } from 'svelte';
-  import CompB from './components/CompB.svelte';
+  import Popup from './components/Popup.svelte';
+  let showPopup = false;
+  let showPopup1 = false;
 
-  const userName = 'tvviem87';
-  setContext('uname-context', userName);
+  // get data from child component dispatch event
+  function closePopup(event: { detail: any }) {
+    showPopup1 = false;
+    console.log(event.detail); // show data from child component
+  }
 </script>
 
 <main>
-  <h2>userName in rootComponent {userName}</h2>
-  <CompB />
+  <button on:click={() => ((showPopup = true), (showPopup1 = true))}
+    >Show Popup component</button
+  >
+  {#if showPopup}
+    <Popup on:close={() => (showPopup = false)} color="lightseagreen" />
+  {/if}
+  {#if showPopup1}
+    <Popup on:close={closePopup} color="brown" />
+  {/if}
 </main>
 
 <style>
