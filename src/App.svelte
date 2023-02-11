@@ -1,25 +1,16 @@
 <script lang="ts">
-  import Popup from './components/Popup.svelte';
-  let showPopup = false;
-  let showPopup1 = false;
+  import Button from './components/forward-events/Button.svelte';
+  import Outer from './components/forward-events/Outer.svelte';
 
-  // get data from child component dispatch event
-  function closePopup(event: { detail: any }) {
-    showPopup1 = false;
-    console.log(event.detail); // show data from child component
+  function handleGreet(e: CustomEvent<any>): void {
+    alert('evt from deeply nested compo---' + e.detail); // get data from child component to show
   }
 </script>
 
 <main>
-  <button on:click={() => ((showPopup = true), (showPopup1 = true))}
-    >Show Popup component</button
-  >
-  {#if showPopup}
-    <Popup on:close={() => (showPopup = false)} color="lightseagreen" />
-  {/if}
-  {#if showPopup1}
-    <Popup on:close={closePopup} color="brown" />
-  {/if}
+  <!-- data got from children Inner, handle in parent App -->
+  <Outer on:greet={handleGreet} />
+  <Button on:click={() => alert('Clicked on Button Compo')} />
 </main>
 
 <style>
