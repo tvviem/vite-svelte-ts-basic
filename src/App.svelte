@@ -1,16 +1,40 @@
 <script lang="ts">
-  import Button from './components/forward-events/Button.svelte';
-  import Outer from './components/forward-events/Outer.svelte';
+  // import Card from './components/slots-over-props/Card.svelte';
 
-  function handleGreet(e: CustomEvent<any>): void {
-    alert('evt from deeply nested compo---' + e.detail); // get data from child component to show
-  }
+  import NameList from './components/slots-over-props/NameList.svelte';
 </script>
 
 <main>
-  <!-- data got from children Inner, handle in parent App -->
-  <Outer on:greet={handleGreet} />
-  <Button on:click={() => alert('Clicked on Button Compo')} />
+  <!-- using slot basic -->
+  <!-- <Card>Card content into slot</Card>
+  <Card><h2>Card content</h2></Card>
+  <Card><img src="https://picsum.photos/200/200" alt="" /></Card>
+  <Card /> -->
+
+  <!-- NAMED SLOTS -->
+  <!-- <Card>
+    <div slot="header"><h3>Header</h3></div>
+    <div slot="content"><img src="https://picsum.photos/200/200" alt="" /></div>
+    <div slot="footer"><button>View Details</button></div>
+  </Card> -->
+
+  <!-- SLOT PROPS, USING DATA FROM CHILD COMPONENT -->
+  <NameList>
+    <h3 slot="hero" let:firstName let:lastName>
+      {firstName}
+      {lastName}
+    </h3>
+  </NameList>
+  <NameList>
+    <h3 slot="hero" let:firstName let:lastName>
+      {lastName}, {firstName}
+    </h3>
+  </NameList>
+  <NameList>
+    <h3 slot="hero" let:firstName let:lastName>
+      {firstName}
+    </h3>
+  </NameList>
 </main>
 
 <style>
