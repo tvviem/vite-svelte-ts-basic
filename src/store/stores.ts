@@ -16,3 +16,14 @@ const start = new Date();
 export const eclapsedTime = derived(time, ($time) =>
   Math.round(($time.valueOf() - start.valueOf()) / 1000)
 );
+
+function createCount() {
+  const { subscribe, set, update } = writable(0);
+  return {
+    subscribe,
+    increment: (size = 1) => update((n) => n + size),
+    decrement: (size = 1) => update((n) => n - size),
+    reset: () => set(0)
+  };
+}
+export const customCount = createCount();
