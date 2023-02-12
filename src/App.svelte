@@ -1,11 +1,15 @@
 <script lang="ts">
-  import AutoFocus from './components/lifecycle-hooks/AutoFocus.svelte';
-  import PostList from './components/lifecycle-hooks/PostList.svelte';
+  import Decrement from './components/Decrement.svelte';
+  import Display from './components/Display.svelte';
+  import Increment from './components/Increment.svelte';
+  import Reset from './components/Reset.svelte';
 </script>
 
 <main>
-  <AutoFocus />
-  <PostList />
+  <Display />
+  <Increment />
+  <Decrement />
+  <Reset />
 </main>
 
 <style>
